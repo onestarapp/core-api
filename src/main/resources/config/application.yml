@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: coreapi
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/coreapi
+    username: postgres
+    password:
+  liquibase:
+    change-log: classpath:config/liquibase/master.xml
