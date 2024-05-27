@@ -5,7 +5,13 @@ FROM eclipse-temurin:17-jre-focal
 WORKDIR /app
 
 # Copy the JAR file from the host to the container
-COPY build/libs/coreapi-0.0.1-SNAPSHOT.jar app.jar
+COPY build/libs/coreapi-0.0.1-SNAPSHOT.jar /app/app.jar
+
+# Copy the entrypoint script into the container
+COPY entrypoint.sh /app/entrypoint.sh
+
+# Make the entrypoint script executable
+RUN chmod +x /app/entrypoint.sh
 
 # Expose the port your application listens on
 EXPOSE 8080
