@@ -3,6 +3,7 @@ package app.onestar.coreapi.domain
 import app.onestar.coreapi.domain.common.AbstractAuditingEntity
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
+import jakarta.persistence.Id
 import jakarta.persistence.Table
 import org.jetbrains.annotations.NotNull
 import java.io.Serializable
@@ -10,6 +11,9 @@ import java.io.Serializable
 @Entity
 @Table(name = "application_feature")
 data class ApplicationFeature(
+    @Id
+    @Column(name = "id")
+    override var id: String? = generateId(ApplicationFeature::class),
     @Column(name = "key")
     @get:NotNull
     var key: String? = null,

@@ -2,7 +2,6 @@ package app.onestar.coreapi.domain.common
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import jakarta.persistence.Column
-import jakarta.persistence.Id
 import jakarta.persistence.MappedSuperclass
 import org.springframework.data.annotation.CreatedBy
 import org.springframework.data.annotation.CreatedDate
@@ -11,13 +10,11 @@ import org.springframework.data.annotation.LastModifiedDate
 import java.io.Serializable
 import java.time.Instant
 import java.util.UUID
+import kotlin.reflect.KClass
 
 @MappedSuperclass
-@JsonIgnoreProperties(value = [ "createdBy", "createdDate", "lastModifiedBy", "lastModifiedDate" ], allowGetters = true)
+@JsonIgnoreProperties(value = [ "createdBy", "createdDate", "lastModifiedBy", "lastModifiedDate", "version" ], allowGetters = true)
 abstract class AbstractAuditingEntity(
-    @Id
-    @Column(name = "id")
-    open var id: String? = null,
     @CreatedBy
     @Column(name = "created_by", nullable = false, length = 64, updatable = false)
     open var createdBy: String? = null,
@@ -31,9 +28,11 @@ abstract class AbstractAuditingEntity(
     @Column(name = "last_modified_date")
     open var lastModifiedDate: Instant? = Instant.now(),
 ) : Serializable {
+    abstract val id: String?
+
     companion object {
-        fun generateId(): String {
-            return "0af-${UUID.randomUUID()}"
+        fun <T : AbstractAuditingEntity> generateId(clazz: KClass<T>): String {
+            return "${clazz.simpleName}-${UUID.randomUUID()}"
         }
     }
 }
