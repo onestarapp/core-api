@@ -14,27 +14,21 @@ data class ApplicationFeature(
     @Id
     @Column(name = "id")
     var id: String = generateId(),
-
     @Column(name = "key")
     @get:NotNull
     var key: String? = null,
-
     @Column(name = "value")
     @get:NotNull
     var value: String? = null,
-
     @Column(name = "created_by")
     @get:NotNull
     var createdBy: String? = null,
-
     @Column(name = "created_date")
     @get:NotNull
     var createdDate: Instant? = Instant.now(),
-
     @Column(name = "last_modified_by")
     @get:NotNull
     var lastModifiedBy: String? = null,
-
     @Column(name = "last_modified_date")
     @get:NotNull
     var lastModifiedDate: Instant? = Instant.now(),

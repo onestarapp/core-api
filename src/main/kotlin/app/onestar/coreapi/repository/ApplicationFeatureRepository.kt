@@ -5,5 +5,4 @@ import org.springframework.data.repository.reactive.ReactiveCrudRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface ApplicationFeatureRepository : ReactiveCrudRepository<ApplicationFeature, String> {
-}
+interface ApplicationFeatureRepository : ReactiveCrudRepository<ApplicationFeature, String>

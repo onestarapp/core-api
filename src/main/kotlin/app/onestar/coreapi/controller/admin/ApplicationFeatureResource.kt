@@ -13,10 +13,12 @@ import reactor.core.publisher.Mono
 @RestController
 @RequestMapping("/api/admin")
 class ApplicationFeatureResource(
-    private val applicationFeatureService: ApplicationFeatureService
+    private val applicationFeatureService: ApplicationFeatureService,
 ) {
     @PostMapping("/application-features")
-    fun saveApplicationFeature(@RequestBody applicationFeature: ApplicationFeature): Mono<ApplicationFeature> {
+    fun saveApplicationFeature(
+        @RequestBody applicationFeature: ApplicationFeature,
+    ): Mono<ApplicationFeature> {
         return applicationFeatureService.save(applicationFeature)
     }
 
