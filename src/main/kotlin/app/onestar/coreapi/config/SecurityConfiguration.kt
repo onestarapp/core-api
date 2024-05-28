@@ -16,7 +16,7 @@ import org.springframework.web.reactive.config.WebFluxConfigurer
 @Configuration
 @EnableWebFluxSecurity
 class SecurityConfiguration : WebFluxConfigurer {
-    @Value("\${jwt.secret}")
+    @Value("\${application.jwt.secret}")
     private val jwtSecret: String? = null
 
     @Bean
@@ -25,7 +25,7 @@ class SecurityConfiguration : WebFluxConfigurer {
     }
 
     @Bean
-    fun userDetailsService(passwordEncoder: PasswordEncoder): MapReactiveUserDetailsService {
+    fun userDetailsService(): MapReactiveUserDetailsService {
         val user: UserDetails =
             User
                 .withUsername("user")
