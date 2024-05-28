@@ -8,7 +8,7 @@
 
     <changeSet author="truongle" id="240527200600_ONESTAR_1">
         <createTable tableName="application_feature">
-            <column name="id" type="${uuidType}">
+            <column name="id" type="varchar(64)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="key" type="varchar(255)">
