@@ -35,7 +35,7 @@ class SecurityConfiguration : WebFluxConfigurer {
             User
                 .withUsername("user")
                 .password(passwordEncoder().encode("password"))
-                .roles("USER")
+                .roles("ROLE_ADMIN")
                 .build()
         return MapReactiveUserDetailsService(user)
     }
