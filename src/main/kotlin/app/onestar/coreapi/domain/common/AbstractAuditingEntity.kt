@@ -16,19 +16,15 @@ abstract class AbstractAuditingEntity<T>(
     @CreatedBy
     @Column(name = "created_by", nullable = false, length = 64, updatable = false)
     open var createdBy: String? = null,
-
     @CreatedDate
     @Column(name = "created_date", updatable = false)
     open var createdDate: Instant? = Instant.now(),
-
     @LastModifiedBy
     @Column(name = "last_modified_by", length = 64)
     open var lastModifiedBy: String? = null,
-
     @LastModifiedDate
     @Column(name = "last_modified_date")
     open var lastModifiedDate: Instant? = Instant.now(),
 ) : Serializable {
-
     abstract val id: T?
 }

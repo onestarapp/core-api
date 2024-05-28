@@ -11,3 +11,6 @@ spring:
     url: r2dbc:postgresql://localhost:5432/coreapi
     username: postgres
     password:
+application:
+  jwt:
+    secret: 32062ff9cd1761f812ad0d73945a94a74cb729717e390569270e03af56568dd6

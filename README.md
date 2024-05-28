@@ -1,5 +1,11 @@
 # coreapi
 
+# Generate random jwt secret key
+
+```bash
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+```
+
 # Getting Started for Developers
 
 ## Install PostgreSQL

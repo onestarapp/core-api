@@ -6,9 +6,7 @@ import jakarta.persistence.Entity
 import jakarta.persistence.Id
 import jakarta.persistence.Table
 import org.jetbrains.annotations.NotNull
-import org.springframework.data.util.ProxyUtils
 import java.io.Serializable
-import java.time.Instant
 import java.util.UUID
 
 @Entity
