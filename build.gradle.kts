@@ -20,7 +20,8 @@ repositories {
 }
 
 val jakartaPersistenceApiVersion = "3.1.0"
-val jsonwebtokenVersion = "0.12.0"
+val jsonwebtokenVersion = "0.11.5"
+val springdocOpenApiVersion = "1.7.0"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
@@ -36,6 +37,8 @@ dependencies {
     implementation("io.jsonwebtoken:jjwt-api:$jsonwebtokenVersion")
     implementation("io.jsonwebtoken:jjwt-impl:$jsonwebtokenVersion")
     implementation("io.jsonwebtoken:jjwt-jackson:$jsonwebtokenVersion")
+    implementation("org.springdoc:springdoc-openapi-webflux-ui:$springdocOpenApiVersion")
+    implementation("org.springdoc:springdoc-openapi-webflux-core:$springdocOpenApiVersion")
     runtimeOnly("org.postgresql:postgresql")
     runtimeOnly("org.postgresql:r2dbc-postgresql")
     testImplementation("org.springframework.boot:spring-boot-starter-test")

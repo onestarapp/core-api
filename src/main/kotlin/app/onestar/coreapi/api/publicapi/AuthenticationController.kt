@@ -1,4 +1,4 @@
-package app.onestar.coreapi.controller.publicapi
+package app.onestar.coreapi.api.publicapi
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
