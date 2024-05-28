@@ -3,6 +3,7 @@ package app.onestar.coreapi.domain.common
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import jakarta.persistence.Column
 import jakarta.persistence.MappedSuperclass
+import jakarta.persistence.Version
 import org.springframework.data.annotation.CreatedBy
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedBy
@@ -27,6 +28,9 @@ abstract class AbstractAuditingEntity(
     @LastModifiedDate
     @Column(name = "last_modified_date")
     open var lastModifiedDate: Instant? = Instant.now(),
+    @Version
+    @Column(name = "version")
+    open var version: Long? = 0,
 ) : Serializable {
     abstract val id: String?
 

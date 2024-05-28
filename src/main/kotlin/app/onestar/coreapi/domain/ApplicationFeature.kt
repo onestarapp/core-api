@@ -26,7 +26,11 @@ data class ApplicationFeature(
             ApplicationFeature{
                 id=$id,
                 key=$key,
-                value=$value
+                value=$value,
+                createdBy=$createdBy,
+                createdDate=$createdDate,
+                lastModifiedBy=$lastModifiedBy,
+                lastModifiedDate=$lastModifiedDate
             }
             """.trimIndent()
     }

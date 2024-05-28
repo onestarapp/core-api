@@ -11,8 +11,27 @@ import reactor.core.publisher.Mono
 class ApplicationFeatureServiceImpl(
     private val applicationFeatureRepository: ApplicationFeatureRepository,
 ) : ApplicationFeatureService {
-    override fun save(applicationFeature: ApplicationFeature): Mono<ApplicationFeature> {
+    override fun create(applicationFeature: ApplicationFeature): Mono<ApplicationFeature> {
         return applicationFeatureRepository.save(applicationFeature)
+    }
+
+    override fun update(applicationFeature: ApplicationFeature): Mono<ApplicationFeature> {
+        return applicationFeatureRepository.save(applicationFeature)
+    }
+
+    override fun patch(applicationFeature: ApplicationFeature): Mono<ApplicationFeature> {
+        requireNotNull(applicationFeature.id) { "ApplicationFeature ID must not be null" }
+        return applicationFeatureRepository.findById(applicationFeature.id!!)
+            .switchIfEmpty(Mono.error(IllegalArgumentException("ApplicationFeature not found")))
+            .flatMap {
+                applicationFeature.key ?. let { key ->
+                    it!!.key = key
+                }
+                applicationFeature.value ?. let { value ->
+                    it!!.value = value
+                }
+                applicationFeatureRepository.save(it!!)
+            }
     }
 
     override fun findById(id: String): Mono<ApplicationFeature?> {

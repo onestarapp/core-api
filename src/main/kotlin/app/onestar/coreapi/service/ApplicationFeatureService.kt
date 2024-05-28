@@ -5,7 +5,9 @@ import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 interface ApplicationFeatureService {
-    fun save(applicationFeature: ApplicationFeature): Mono<ApplicationFeature>
+    fun create(applicationFeature: ApplicationFeature): Mono<ApplicationFeature>
+    fun update(applicationFeature: ApplicationFeature): Mono<ApplicationFeature>
+    fun patch(applicationFeature: ApplicationFeature): Mono<ApplicationFeature>
 
     fun findById(id: String): Mono<ApplicationFeature?>
 
