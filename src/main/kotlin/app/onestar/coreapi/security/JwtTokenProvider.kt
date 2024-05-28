@@ -7,6 +7,7 @@ import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import io.jsonwebtoken.security.Keys
 import jakarta.annotation.PostConstruct
+import org.slf4j.LoggerFactory
 import org.springframework.core.env.Environment
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
@@ -25,6 +26,7 @@ class JwtTokenProvider(
 ) {
     companion object {
         private const val AUTHORITIES_KEY = "roles"
+        private val log = LoggerFactory.getLogger(JwtTokenProvider::class.java)
     }
 
     private lateinit var secretKey: SecretKey
@@ -41,7 +43,7 @@ class JwtTokenProvider(
         val authorities: Collection<GrantedAuthority> = authentication.authorities
         val claims: Claims = Jwts.claims().setSubject(username)
         if (authorities.isNotEmpty()) {
-            claims[AUTHORITIES_KEY] = authorities.map { it.authority }.joinToString { "," }
+            claims[AUTHORITIES_KEY] = authorities.joinToString(",") { it.authority }
         }
         val now = Date()
         val validityInMs =
