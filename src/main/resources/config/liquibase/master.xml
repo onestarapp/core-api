@@ -9,4 +9,6 @@
     <property name="blobType" value="bytea" dbms="postgresql"/>
     <property name="uuidType" value="uuid" dbms="postgresql"/>
     <property name="datetimeType" value="datetime" dbms="postgresql"/>
+
+    <include file="config/liquibase/changelog/240527200600_ONESTAR_1.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

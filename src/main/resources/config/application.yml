@@ -1,9 +1,13 @@
 spring:
   application:
     name: coreapi
+  liquibase:
+    contexts: dev
+    url: jdbc:postgresql://localhost:5432/coreapi
+    user: postgres
+    password:
+    change-log: classpath:config/liquibase/master.xml
   r2dbc:
     url: r2dbc:postgresql://localhost:5432/coreapi
     username: postgres
     password:
-  liquibase:
-    change-log: classpath:config/liquibase/master.xml
