@@ -11,6 +11,7 @@ import java.util.UUID
 
 @Entity
 @Table(name = "application_feature")
+// @EntityListeners(AuditingEntityListener::class)
 data class ApplicationFeature(
     @Id
     @Column(name = "id")
@@ -21,7 +22,7 @@ data class ApplicationFeature(
     @Column(name = "value")
     @get:NotNull
     var value: String? = null,
-) : Serializable, AbstractAuditingEntity<String>() {
+) : Serializable, AbstractAuditingEntity() {
     companion object {
         fun generateId(): String {
             return "0af-${UUID.randomUUID()}"

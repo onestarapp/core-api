@@ -30,11 +30,11 @@ class SecurityConfiguration : WebFluxConfigurer {
     }
 
     @Bean
-    fun userDetailsService(): MapReactiveUserDetailsService {
+    fun userDetailsService(passwordEncoder: PasswordEncoder): MapReactiveUserDetailsService {
         val user: UserDetails =
             User
                 .withUsername("user")
-                .password(passwordEncoder().encode("password"))
+                .password(passwordEncoder.encode("password"))
                 .roles("ADMIN")
                 .build()
         return MapReactiveUserDetailsService(user)

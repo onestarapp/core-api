@@ -15,11 +15,15 @@ class ApplicationFeatureServiceImpl(
         return applicationFeatureRepository.save(applicationFeature)
     }
 
-    override fun findById(id: String): ApplicationFeature? {
-        TODO("Not yet implemented")
+    override fun findById(id: String): Mono<ApplicationFeature?> {
+        return applicationFeatureRepository.findById(id)
     }
 
     override fun findAll(): Flux<ApplicationFeature> {
         return applicationFeatureRepository.findAll()
+    }
+
+    override fun deleteById(id: String): Mono<Void> {
+        return applicationFeatureRepository.deleteById(id)
     }
 }

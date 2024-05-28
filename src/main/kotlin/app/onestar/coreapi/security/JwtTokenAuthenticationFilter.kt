@@ -2,7 +2,6 @@ package app.onestar.coreapi.security
 
 import org.springframework.http.HttpHeaders
 import org.springframework.http.server.reactive.ServerHttpRequest
-import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.ReactiveSecurityContextHolder
 import org.springframework.util.StringUtils
 import org.springframework.web.server.ServerWebExchange
@@ -30,9 +29,9 @@ class JwtTokenAuthenticationFilter(
                 )
             }
                 .subscribeOn(Schedulers.boundedElastic())
-                .flatMap { authentication: Authentication? ->
+                .flatMap {
                     chain.filter(exchange)
-                        .contextWrite(ReactiveSecurityContextHolder.withAuthentication(authentication))
+                        .contextWrite(ReactiveSecurityContextHolder.withAuthentication(it))
                 }
         } else {
             chain.filter(exchange)

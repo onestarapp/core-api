@@ -7,7 +7,9 @@ import reactor.core.publisher.Mono
 interface ApplicationFeatureService {
     fun save(applicationFeature: ApplicationFeature): Mono<ApplicationFeature>
 
-    fun findById(id: String): ApplicationFeature?
+    fun findById(id: String): Mono<ApplicationFeature?>
 
     fun findAll(): Flux<ApplicationFeature>
+
+    fun deleteById(id: String): Mono<Void>
 }
