@@ -1,10 +1,13 @@
 package app.onestar.coreapi.domain
 
+import app.onestar.coreapi.domain.common.AbstractAuditingEntity
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.Id
 import jakarta.persistence.Table
 import org.jetbrains.annotations.NotNull
+import org.springframework.data.util.ProxyUtils
+import java.io.Serializable
 import java.time.Instant
 import java.util.UUID
 
@@ -13,26 +16,14 @@ import java.util.UUID
 data class ApplicationFeature(
     @Id
     @Column(name = "id")
-    var id: String = generateId(),
+    override var id: String = generateId(),
     @Column(name = "key")
     @get:NotNull
     var key: String? = null,
     @Column(name = "value")
     @get:NotNull
     var value: String? = null,
-    @Column(name = "created_by")
-    @get:NotNull
-    var createdBy: String? = null,
-    @Column(name = "created_date")
-    @get:NotNull
-    var createdDate: Instant? = Instant.now(),
-    @Column(name = "last_modified_by")
-    @get:NotNull
-    var lastModifiedBy: String? = null,
-    @Column(name = "last_modified_date")
-    @get:NotNull
-    var lastModifiedDate: Instant? = Instant.now(),
-) {
+) : Serializable, AbstractAuditingEntity<String>() {
     companion object {
         fun generateId(): String {
             return "0af-${UUID.randomUUID()}"
