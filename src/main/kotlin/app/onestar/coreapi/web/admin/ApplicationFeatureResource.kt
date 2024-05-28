@@ -1,4 +1,4 @@
-package app.onestar.coreapi.api.admin
+package app.onestar.coreapi.web.admin
 
 import app.onestar.coreapi.domain.ApplicationFeature
 import app.onestar.coreapi.service.ApplicationFeatureService
